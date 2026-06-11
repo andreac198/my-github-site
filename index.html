@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iAndrea.com | Random Thoughts & Tech!</title>
+    <title>Andrea's Security Terminal | Night 1</title>
+    <!-- Creepy, atmospheric font -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
-        --icarly-pink: #ff007f;
-        --icarly-teal: #00f2fe;
-        --icarly-yellow: #fff200;
-        --icarly-purple: #7b2cbf;
-        --dark-bg: #1a1a2e;
+        --fnaf-red: #8b0000;
+        --monitor-green: #20c20e;
+        --dark-void: #050508;
+        --border-gray: #2d2d30;
       }
 
       * {
@@ -19,211 +19,215 @@
       }
 
       body { 
-        font-family: 'Fredoka', sans-serif; 
+        font-family: 'Courier Prime', monospace; 
         margin: 0; 
         padding: 0; 
-        background-color: var(--dark-bg);
-        /* Retro iCarly dot/grid matrix background texture */
-        background-image: 
-          radial-gradient(rgba(255, 0, 127, 0.15) 15%, transparent 16%),
-          radial-gradient(rgba(0, 242, 254, 0.15) 15%, transparent 16%);
-        background-size: 30px 30px;
-        background-position: 0 0, 15px 15px;
+        background-color: var(--dark-void);
+        /* Security monitor scanlines effect */
+        background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        background-size: 100% 4px, 6px 100%;
         color: #fff;
         min-height: 100vh;
-        padding: 20px;
-      }
-
-      /* Top Header Banner */
-      header {
-        max-width: 900px;
-        margin: 0 auto 30px auto;
-        background: linear-gradient(90deg, var(--icarly-pink), var(--icarly-purple));
-        padding: 20px;
-        border-radius: 20px;
-        border: 4px solid #fff;
-        box-shadow: 0 8px 0px rgba(0,0,0,0.3);
-        text-align: center;
-        transform: rotate(-1deg);
-      }
-
-      header h1 {
-        margin: 0;
-        font-size: 3.5rem;
-        font-weight: 700;
-        letter-spacing: -2px;
-        text-transform: lowercase;
-        color: #fff;
-        text-shadow: 4px 4px 0px var(--icarly-teal);
-      }
-
-      header h1 span {
-        color: var(--icarly-yellow);
-        text-transform: none;
-      }
-
-      /* Main Webpage Grid Layout */
-      .main-layout {
-        max-width: 900px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 25px;
-      }
-
-      @media (max-width: 768px) {
-        .main-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Left Side: Mock Video/Main Content Window */
-      .video-window {
-        background: #000;
-        border: 6px solid var(--icarly-teal);
-        border-radius: 24px;
-        padding: 20px;
-        box-shadow: 0 10px 0px rgba(0,0,0,0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
         position: relative;
       }
 
-      /* Web Player Top Bar Decoration */
-      .video-window::before {
-        content: '🔴 LIVE WEBCAST PLAYER';
+      /* Full Screen Chica Jumpscare Overlay */
+      .jumpscare-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        z-index: 9999;
+        display: none; /* Controlled by JavaScript */
+        justify-content: center;
+        align-items: center;
+      }
+
+      .jumpscare-overlay img {
+        max-height: 95vh;
+        max-width: 95vw;
+        /* Violent shaking animation */
+        animation: shake 0.15s infinite;
+      }
+
+      @keyframes shake {
+        0% { transform: translate(2px, 1px) rotate(0deg) scale(1.1); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg) scale(1.15); }
+        20% { transform: translate(-3px, 0px) rotate(1deg) scale(1.1); }
+        30% { transform: translate(0px, 2px) rotate(0deg) scale(1.2); }
+        40% { transform: translate(1px, -1px) rotate(1deg) scale(1.15); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg) scale(1.1); }
+        60% { transform: translate(-3px, 1px) rotate(0deg) scale(1.2); }
+        70% { transform: translate(2px, 1px) rotate(-1deg) scale(1.15); }
+        80% { transform: translate(-1px, -1px) rotate(1deg) scale(1.1); }
+        90% { transform: translate(2px, 2px) rotate(0deg) scale(1.2); }
+        100% { transform: translate(1px, -2px) rotate(-1deg) scale(1.15); }
+      }
+
+      /* Main Security Terminal Box */
+      .terminal {
+        width: 100%;
+        max-width: 600px;
+        padding: 30px;
+        background: #0c0d12;
+        border: 4px solid var(--border-gray);
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05);
+        margin: 40px 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Camera Feed Static Text Indicator */
+      .camera-tag {
+        font-family: 'Special Elite', cursive;
         position: absolute;
-        top: -15px;
-        left: 30px;
-        background: var(--icarly-yellow);
-        color: #000;
-        padding: 3px 12px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        border-radius: 8px;
-        border: 2px solid #000;
+        top: 15px;
+        right: 20px;
+        color: #ff3333;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        animation: blink 1s steps(2, start) infinite;
       }
 
-      .post-box {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin-top: 15px;
-        border: 2px dashed rgba(255,255,255,0.2);
-      }
+      @keyframes blink { to { visibility: hidden; } }
 
-      h2 {
-        color: var(--icarly-yellow);
-        font-size: 1.6rem;
+      h1 { 
+        font-family: 'Special Elite', cursive;
+        font-size: 2.2rem;
         margin-top: 0;
+        margin-bottom: 5px;
+        color: var(--fnaf-red);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      }
+
+      .status-text {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+        margin-bottom: 30px;
         text-transform: uppercase;
       }
 
-      p {
-        line-height: 1.6;
-        color: #e0e0e0;
-        font-size: 1.05rem;
+      h2 { 
+        color: var(--monitor-green); 
+        font-size: 1.1rem;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+
+      p { 
+        line-height: 1.6; 
+        color: #d1d5db; 
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      /* CRT Security Monitor Panels */
+      .monitor-panel {
+        background: #061208;
+        padding: 20px;
+        border-radius: 6px; 
+        border: 2px solid #143d18;
+        box-shadow: inset 0 0 15px rgba(32, 194, 14, 0.2);
       }
 
       strong {
-        color: var(--icarly-pink);
+        color: var(--monitor-green);
       }
 
-      /* Right Side: Sidebar Navigation/Widgets */
-      .sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .widget {
-        background: #252542;
-        border: 4px solid var(--icarly-pink);
-        border-radius: 20px;
-        padding: 20px;
-        box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
-        transform: rotate(1deg);
-      }
-
-      .widget:nth-child(even) {
-        border-color: var(--icarly-yellow);
-        transform: rotate(-1deg);
-        color: #fff;
-      }
-
-      .widget h3 {
-        margin-top: 0;
-        color: #fff;
-        font-size: 1.3rem;
-        border-bottom: 3px solid rgba(255,255,255,0.1);
-        padding-bottom: 5px;
-      }
-
-      /* Link/Button styled like an early web clickable badge */
-      .icarly-btn {
-        display: block;
+      /* System Button */
+      .system-link-box {
         text-align: center;
-        background: var(--icarly-yellow);
-        color: #000;
-        padding: 15px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.2rem;
-        border: 3px solid #fff;
-        box-shadow: 0 5px 0px #b3a000;
-        transition: transform 0.1s ease;
-        margin-top: 15px;
+        margin-top: 30px;
       }
 
-      .icarly-btn:hover {
-        transform: translateY(2px);
-        box-shadow: 0 3px 0px #b3a000;
+      .terminal-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: transparent;
+        color: var(--fnaf-red);
+        text-decoration: none;
+        border: 2px solid var(--fnaf-red);
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+      }
+
+      .terminal-btn:hover {
+        background: var(--fnaf-red);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+        transform: translateY(-2px);
       }
     </style>
   </head>
   <body>
 
-    <!-- iCarly Header Section -->
-    <header>
-      <h1>i<span>Andrea</span>.com</h1>
-    </header>
+    <!-- Silent Jumpscare Overlay using a Creative Commons remix Chica graphic -->
+    <div class="jumpscare-overlay" id="jumpscare">
+      <img src="https://openclipart.org" alt="Chica Jumpscare">
+    </div>
 
-    <!-- Content Layout Grid -->
-    <div class="main-layout">
+    <!-- Security Office Frame -->
+    <div class="terminal">
+      <div class="camera-tag">● CAM 1A</div>
       
-      <!-- Main Content Window Area -->
-      <div class="video-window">
-        
-        <div class="post-box">
-          <h2>Welcome To My Space!</h2>
-          <p>Hey guys! Welcome to my web portal where I track everything I'm working on. Right now I am a 9th grader over at <strong>Energy Tech High School</strong>. The coolest part about it is that we get to sync up with engineering mentors to see exactly how huge industrial companies function behind the scenes!</p>
-        </div>
+      <h1>SYSTEM CORRUPTION</h1>
+      <div class="status-text">Log Entry: Andrea Criollo // Access Granted</div>
 
-        <div class="post-box">
-          <h2>Random Brain Thoughts: Geometry</h2>
-          <p>Okay, serious thought: <strong>Geometry is actually awesome.</strong> Most people think it's just drawings of triangles on regular grid paper, but it's literally the secret framework used to build 3D virtual spaces and high-end video game engines. Think about THAT next time you open a map!</p>
-        </div>
-
+      <h2>[ LOG_01: ACADEMICS ]</h2>
+      <div class="monitor-panel">
+        <p>I am a 9th grader currently stationed at <strong>Energy Tech High School</strong>. The facility coordinates directly with engineering mentors, providing a practical glance at real engineering infrastructure while regular high school logging updates occur.</p>
       </div>
 
-      <!-- Right Column Sidebar Widgets -->
-      <div class="sidebar">
-        
-        <div class="widget">
-          <h3>Current Goals 🚀</h3>
-          <p>My absolute main focus during this course is to level up my critical thinking and completely deep-dive into computer science. I want to build a rock-solid coding foundation so I can design clean software from scratch!</p>
-        </div>
+      <h2>[ LOG_02: SUBJECTS_OF_INTEREST ]</h2>
+      <div class="monitor-panel">
+        <p>Current active parameters include outdoor mapping exploration and <strong>geometry</strong>. Geometry operates as the structural wireframe mapping system required to configure all 3D gaming environments and artificial simulations.</p>
+      </div>
 
-        <div class="widget">
-          <h3>Web Links!</h3>
-          <p>Check out the latest projects I've been shipping directly to my public source repository:</p>
-          <a href="https://github.com" target="_blank" class="icarly-btn">SEE MY CODE!</a>
-        </div>
+      <h2>[ LOG_03: OBJECTIVES ]</h2>
+      <div class="monitor-panel">
+        <p>The objective is to refine a critical core processing mindset and map out advanced computing models. I am planning to secure a deep functional data base to run structural source software and debug daily operational obstacles.</p>
+      </div>
 
+      <div class="system-link-box">
+        <a href="https://github.com" target="_blank" class="terminal-btn">Access Git Repository</a>
       </div>
 
     </div>
 
+    <script>
+      // Trigger the silent jumpscare once the user interacts with the page
+      function triggerScare() {
+        const overlay = document.getElementById('jumpscare');
+        overlay.style.display = 'flex';
+        
+        // Hide it after exactly 1.2 seconds so they can view the website safely
+        setTimeout(() => {
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            overlay.style.display = 'none';
+          }, 300);
+        }, 1200);
+
+        // Remove listeners so it only scares them once per load
+        window.removeEventListener('click', triggerScare);
+        window.removeEventListener('keydown', triggerScare);
+      }
+
+      // Activate listener for first user click or button press
+      window.addEventListener('click', triggerScare);
+      window.addEventListener('keydown', triggerScare);
+    </script>
+
   </body>
 </html>
-
-
