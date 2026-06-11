@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrea's Security Terminal | Night 1</title>
-    <!-- Creepy, atmospheric font -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
@@ -23,7 +22,6 @@
         margin: 0; 
         padding: 0; 
         background-color: var(--dark-void);
-        /* Security monitor scanlines effect */
         background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
         background-size: 100% 4px, 6px 100%;
         color: #fff;
@@ -44,48 +42,47 @@
         height: 100vh;
         background: #000;
         z-index: 9999;
-        display: none; /* Controlled by JavaScript */
+        display: none; 
         justify-content: center;
         align-items: center;
       }
 
       .jumpscare-overlay img {
-        max-height: 95vh;
-        max-width: 95vw;
-        /* Violent shaking animation */
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
         animation: shake 0.15s infinite;
       }
 
       @keyframes shake {
-        0% { transform: translate(2px, 1px) rotate(0deg) scale(1.1); }
-        10% { transform: translate(-1px, -2px) rotate(-1deg) scale(1.15); }
-        20% { transform: translate(-3px, 0px) rotate(1deg) scale(1.1); }
-        30% { transform: translate(0px, 2px) rotate(0deg) scale(1.2); }
-        40% { transform: translate(1px, -1px) rotate(1deg) scale(1.15); }
-        50% { transform: translate(-1px, 2px) rotate(-1deg) scale(1.1); }
-        60% { transform: translate(-3px, 1px) rotate(0deg) scale(1.2); }
-        70% { transform: translate(2px, 1px) rotate(-1deg) scale(1.15); }
-        80% { transform: translate(-1px, -1px) rotate(1deg) scale(1.1); }
-        90% { transform: translate(2px, 2px) rotate(0deg) scale(1.2); }
-        100% { transform: translate(1px, -2px) rotate(-1deg) scale(1.15); }
+        0% { transform: translate(4px, 2px) rotate(0deg) scale(1.1); }
+        10% { transform: translate(-2px, -4px) rotate(-1deg) scale(1.15); }
+        20% { transform: translate(-5px, 0px) rotate(1deg) scale(1.1); }
+        30% { transform: translate(0px, 4px) rotate(0deg) scale(1.2); }
+        40% { transform: translate(2px, -2px) rotate(1deg) scale(1.15); }
+        50% { transform: translate(-2px, 4px) rotate(-1deg) scale(1.1); }
+        60% { transform: translate(-5px, 2px) rotate(0deg) scale(1.2); }
+        70% { transform: translate(4px, 2px) rotate(-1deg) scale(1.15); }
+        80% { transform: translate(-2px, -2px) rotate(1deg) scale(1.1); }
+        90% { transform: translate(4px, 4px) rotate(0deg) scale(1.2); }
+        100% { transform: translate(2px, -4px) rotate(-1deg) scale(1.15); }
       }
 
-      /* Main Security Terminal Box */
+      /* Main Security Terminal Layout Box */
       .terminal {
         width: 100%;
-        max-width: 600px;
+        max-width: 650px;
         padding: 30px;
         background: #0c0d12;
         border: 4px solid var(--border-gray);
         border-radius: 12px;
-        box-shadow: 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.05);
+        box-shadow: 0 0 40px rgba(0,0,0,0.8);
         margin: 40px 20px;
         position: relative;
         z-index: 2;
       }
 
-      /* Camera Feed Static Text Indicator */
-      .camera-tag {
+      .live-tag {
         font-family: 'Special Elite', cursive;
         position: absolute;
         top: 15px;
@@ -104,48 +101,113 @@
         margin-top: 0;
         margin-bottom: 5px;
         color: var(--fnaf-red);
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
       }
 
       .status-text {
         font-size: 0.85rem;
         color: #7f8c8d;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         text-transform: uppercase;
       }
 
       h2 { 
         color: var(--monitor-green); 
         font-size: 1.1rem;
-        margin-top: 25px;
+        margin-top: 20px;
         margin-bottom: 10px;
         letter-spacing: 1px;
       }
 
-      p { 
-        line-height: 1.6; 
-        color: #d1d5db; 
+      /* --- FNAF INTERACTIVE CAMERA MONITOR --- */
+      .camera-monitor {
+        background: #030a04;
+        border: 3px solid #143d18;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: inset 0 0 20px rgba(32, 194, 14, 0.3);
+        margin: 25px 0;
+      }
+
+      /* Screen displaying active camera context */
+      .feed-screen {
+        height: 180px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 2px dashed #1d5222;
+        border-radius: 4px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Animated Static Line overlay on the camera */
+      .feed-screen::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: repeating-linear-gradient(0deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px);
+        pointer-events: none;
+      }
+
+      .active-cam-indicator {
+        position: absolute;
+        top: 8px;
+        left: 12px;
+        color: var(--monitor-green);
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .feed-text {
+        color: #d1d5db;
         font-size: 0.95rem;
-        margin: 0;
+        line-height: 1.5;
+        max-width: 90%;
       }
 
-      /* CRT Security Monitor Panels */
-      .monitor-panel {
-        background: #061208;
-        padding: 20px;
-        border-radius: 6px; 
-        border: 2px solid #143d18;
-        box-shadow: inset 0 0 15px rgba(32, 194, 14, 0.2);
-      }
-
-      strong {
+      .feed-text strong {
         color: var(--monitor-green);
       }
 
-      /* System Button */
+      /* Grid Layout for Cam Selection Badges */
+      .cam-controls {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .cam-btn {
+        background: #112214;
+        border: 2px solid #1d5222;
+        color: #6bbe72;
+        font-weight: bold;
+        font-size: 0.8rem;
+        padding: 8px 4px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+
+      .cam-btn:hover {
+        background: #19381e;
+        color: #fff;
+      }
+
+      .cam-btn.active {
+        background: var(--monitor-green);
+        color: #000;
+        border-color: #fff;
+        box-shadow: 0 0 10px rgba(32,194,14,0.6);
+      }
+
       .system-link-box {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 25px;
       }
 
       .terminal-btn {
@@ -157,7 +219,6 @@
         border: 2px solid var(--fnaf-red);
         font-weight: 700;
         font-size: 0.95rem;
-        letter-spacing: 1px;
         text-transform: uppercase;
         transition: all 0.2s ease;
       }
@@ -166,37 +227,41 @@
         background: var(--fnaf-red);
         color: #fff;
         box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
-        transform: translateY(-2px);
       }
     </style>
   </head>
   <body>
 
-    <!-- Silent Jumpscare Overlay using a Creative Commons remix Chica graphic -->
+    <!-- Jumpscare Overlay -->
     <div class="jumpscare-overlay" id="jumpscare">
-      <img src="https://openclipart.org" alt="Chica Jumpscare">
+      <img src="https://makeagif.com" alt="Chica Jumpscare">
     </div>
 
-    <!-- Security Office Frame -->
+    <!-- Main Terminal Frame -->
     <div class="terminal">
-      <div class="camera-tag">● CAM 1A</div>
+      <div class="live-tag">● LIVE_FEED</div>
       
-      <h1>SYSTEM CORRUPTION</h1>
-      <div class="status-text">Log Entry: Andrea Criollo // Access Granted</div>
+      <h1>SYSTEM MONITOR</h1>
+      <div class="status-text">Facility Log: Andrea Criollo // Security Feed Active</div>
 
-      <h2>[ LOG_01: ACADEMICS ]</h2>
-      <div class="monitor-panel">
-        <p>I am a 9th grader currently stationed at <strong>Energy Tech High School</strong>. The facility coordinates directly with engineering mentors, providing a practical glance at real engineering infrastructure while regular high school logging updates occur.</p>
-      </div>
+      <h2>[ INTERACTIVE FEED FEEDBACK ]</h2>
+      
+      <!-- Interactive Camera Unit -->
+      <div class="camera-monitor">
+        <div class="feed-screen">
+          <div class="active-cam-indicator" id="camName">CAM 1A - SHOW STAGE</div>
+          <p class="feed-text" id="camContent">
+            Welcome to the security logs. Click any camera below to scan different quadrants of Andrea's profile.
+          </p>
+        </div>
 
-      <h2>[ LOG_02: SUBJECTS_OF_INTEREST ]</h2>
-      <div class="monitor-panel">
-        <p>Current active parameters include outdoor mapping exploration and <strong>geometry</strong>. Geometry operates as the structural wireframe mapping system required to configure all 3D gaming environments and artificial simulations.</p>
-      </div>
-
-      <h2>[ LOG_03: OBJECTIVES ]</h2>
-      <div class="monitor-panel">
-        <p>The objective is to refine a critical core processing mindset and map out advanced computing models. I am planning to secure a deep functional data base to run structural source software and debug daily operational obstacles.</p>
+        <!-- Selection System Map Buttons -->
+        <div class="cam-controls">
+          <button class="cam-btn active" onclick="switchCam('1A', 'SHOW STAGE', 'I am a 9th grader currently stationed at <strong>Energy Tech High School</strong>. This facility coordinates directly with engineering leaders to see real-world systems in action.')">CAM 1A</button>
+          <button class="cam-btn" onclick="switchCam('1B', 'DINING AREA', 'Current parameters logged include outdoor mapping exploration and a huge focus on studying <strong>geometry</strong>.')">CAM 1B</button>
+          <button class="cam-btn" onclick="switchCam('2A', 'WEST HALL', 'Geometry isn\'t just regular drawings—it\'s the hidden spatial math wireframe required to build <strong>3D video game systems</strong>.')">CAM 2A</button>
+          <button class="cam-btn" onclick="switchCam('3', 'BACKSTAGE', 'My primary goal during this log cycle is to develop a strong critical engineering mindset and learn computer science from scratch.')">CAM 3</button>
+        </div>
       </div>
 
       <div class="system-link-box">
@@ -206,27 +271,38 @@
     </div>
 
     <script>
-      // Trigger the silent jumpscare once the user interacts with the page
+      // Jumpscare system logic
       function triggerScare() {
         const overlay = document.getElementById('jumpscare');
         overlay.style.display = 'flex';
         
-        // Hide it after exactly 1.2 seconds so they can view the website safely
         setTimeout(() => {
           overlay.style.opacity = '0';
           setTimeout(() => {
             overlay.style.display = 'none';
           }, 300);
-        }, 1200);
+        }, 1500);
 
-        // Remove listeners so it only scares them once per load
         window.removeEventListener('click', triggerScare);
         window.removeEventListener('keydown', triggerScare);
       }
 
-      // Activate listener for first user click or button press
       window.addEventListener('click', triggerScare);
       window.addEventListener('keydown', triggerScare);
+
+      // Camera Monitor Switching Script
+      function switchCam(id, roomName, contentText) {
+        // Update display text elements smoothly
+        document.getElementById('camName').innerText = `CAM ${id} - ${roomName}`;
+        document.getElementById('camContent').innerHTML = contentText;
+
+        // Reset all buttons visual status styling
+        const buttons = document.querySelectorAll('.cam-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Set the clicked button to active state highlights
+        event.target.classList.add('active');
+      }
     </script>
 
   </body>
