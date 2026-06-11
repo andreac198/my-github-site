@@ -120,6 +120,23 @@
         letter-spacing: 1px;
       }
 
+      /* Audio Player Module */
+      .audio-module {
+        background: #111;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border-gray);
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      audio {
+        width: 100%;
+        height: 30px;
+        opacity: 0.6;
+      }
+
       /* --- FNAF INTERACTIVE CAMERA MONITOR --- */
       .camera-monitor {
         background: #030a04;
@@ -244,6 +261,16 @@
       <h1>SYSTEM MONITOR</h1>
       <div class="status-text">Facility Log: Andrea Criollo // Freshman Entry Pack</div>
 
+      <!-- FNAF 4 Theme Loop Audio Player -->
+      <div class="audio-module">
+        <audio id="fnafAudio" loop controls>
+          <source src="https://github.io" type="audio/mpeg">
+          <!-- Fallback path if the main server is busy -->
+          <source src="https://soundboard.com" type="audio/mpeg">
+          Your browser does not support the audio player element.
+        </audio>
+      </div>
+
       <h2>[ FRESHMAN SECURITY MONITORS ]</h2>
       
       <div class="camera-monitor">
@@ -271,29 +298,3 @@
     <script>
       // Automatically run the jumpscare as soon as the window finishes loading
       window.onload = function() {
-        const overlay = document.getElementById('jumpscare');
-        overlay.style.display = 'flex';
-        
-        // Show the fullscreen jumpscare image for exactly 1.5 seconds
-        setTimeout(() => {
-          overlay.style.opacity = '0';
-          setTimeout(() => {
-            overlay.style.display = 'none';
-          }, 300);
-        }, 1500);
-      };
-
-      // Camera Monitor Switching Script
-      function switchCam(id, roomName, contentText) {
-        document.getElementById('camName').innerText = `CAM ${id} - ${roomName}`;
-        document.getElementById('camContent').innerHTML = contentText;
-
-        const buttons = document.querySelectorAll('.cam-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        event.target.classList.add('active');
-      }
-    </script>
-
-  </body>
-</html>
