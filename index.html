@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea's Security Terminal | Night 1</title>
+    <title>Andrea's Bedroom | FNAF 4 Survival Log</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
-        --fnaf-red: #8b0000;
-        --monitor-green: #20c20e;
-        --dark-void: #050508;
-        --border-gray: #2d2d30;
+        --nightmare-red: #5c0606;
+        --flashlight-glow: #e0d0a0;
+        --shadow-black: #030305;
+        --wood-brown: #2c1a11;
       }
 
       * {
@@ -21,9 +21,9 @@
         font-family: 'Courier Prime', monospace; 
         margin: 0; 
         padding: 0; 
-        background-color: var(--dark-void);
-        background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-        background-size: 100% 4px, 6px 100%;
+        background-color: var(--shadow-black);
+        /* Atmospheric dark gradient simulating flashlight shadows in a bedroom */
+        background-image: radial-gradient(circle at 50% 30%, rgba(224, 208, 160, 0.08) 0%, rgba(5, 5, 8, 0.95) 70%);
         color: #fff;
         min-height: 100vh;
         display: flex;
@@ -53,10 +53,10 @@
         height: 100vh;
         width: 100vw;
         object-fit: cover;
-        animation: shake 0.1s infinite;
+        animation: violentShake 0.1s infinite;
       }
 
-      @keyframes shake {
+      @keyframes violentShake {
         0% { transform: translate(5px, 3px) rotate(0deg) scale(1.15); }
         10% { transform: translate(-3px, -5px) rotate(-1.5deg) scale(1.2); }
         20% { transform: translate(-6px, 0px) rotate(1.5deg) scale(1.15); }
@@ -70,156 +70,153 @@
         100% { transform: translate(3px, -5px) rotate(-1.5deg) scale(1.2); }
       }
 
-      /* Main Security Terminal Layout Box */
+      /* Main FNAF 4 Wooden Terminal Box */
       .terminal {
         width: 100%;
         max-width: 650px;
         padding: 30px;
-        background: #0c0d12;
-        border: 4px solid var(--border-gray);
-        border-radius: 12px;
-        box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        background: #140d0a;
+        border: 4px solid var(--wood-brown);
+        border-radius: 8px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(224, 208, 160, 0.03);
         margin: 40px 20px;
         position: relative;
         z-index: 2;
       }
 
-      .live-tag {
+      .clock-tag {
         font-family: 'Special Elite', cursive;
         position: absolute;
         top: 15px;
-        right: 20px;
-        color: #ff3333;
-        font-size: 1.1rem;
-        letter-spacing: 2px;
-        animation: blink 1s steps(2, start) infinite;
+        right: 25px;
+        color: #e6e6e6;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
       }
-
-      @keyframes blink { to { visibility: hidden; } }
 
       h1 { 
         font-family: 'Special Elite', cursive;
-        font-size: 2.2rem;
+        font-size: 2.4rem;
         margin-top: 0;
         margin-bottom: 5px;
-        color: var(--fnaf-red);
+        color: var(--nightmare-red);
+        letter-spacing: -1px;
+        text-shadow: 3px 3px 0px #000;
       }
 
       .status-text {
         font-size: 0.85rem;
-        color: #7f8c8d;
+        color: #635045;
         margin-bottom: 25px;
         text-transform: uppercase;
+        font-weight: bold;
       }
 
       h2 { 
-        color: var(--monitor-green); 
-        font-size: 1.1rem;
+        color: var(--flashlight-glow); 
+        font-size: 1.05rem;
         margin-top: 20px;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
       }
 
-      /* Audio Player Module */
-      .audio-module {
-        background: #111;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid var(--border-gray);
+      /* Audio Container */
+      .audio-container {
+        background: rgba(0,0,0,0.4);
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #22150f;
         margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
       }
 
       audio {
         width: 100%;
-        height: 30px;
-        opacity: 0.6;
+        height: 28px;
+        opacity: 0.5;
       }
 
-      /* --- FNAF INTERACTIVE CAMERA MONITOR --- */
-      .camera-monitor {
-        background: #030a04;
-        border: 3px solid #143d18;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: inset 0 0 20px rgba(32, 194, 14, 0.3);
-        margin: 25px 0;
-      }
-
-      .feed-screen {
-        height: 220px;
-        background: rgba(0, 0, 0, 0.75);
-        border: 2px dashed #1d5222;
-        border-radius: 4px;
-        padding: 15px;
+      /* Room Inspection Feed Box */
+      .room-viewport {
+        background: #080504;
+        border: 2px solid #3a2519;
+        border-radius: 6px;
+        padding: 20px;
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9);
+        margin: 20px 0;
+        min-height: 160px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        text-align: left;
         position: relative;
-        overflow: hidden;
       }
 
-      .feed-screen::before {
+      /* Flashlight Cone Effect over text content */
+      .room-viewport::after {
         content: '';
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: repeating-linear-gradient(0deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px);
+        background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 80%);
         pointer-events: none;
       }
 
-      .active-cam-indicator {
+      .active-location {
         position: absolute;
         top: 8px;
         left: 12px;
-        color: var(--monitor-green);
-        font-size: 0.8rem;
+        color: var(--flashlight-glow);
+        font-size: 0.75rem;
         font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .feed-text {
-        color: #d1d5db;
+        color: #c2b4ab;
         font-size: 0.95rem;
         line-height: 1.6;
-        width: 100%;
         margin: 0;
+        z-index: 1;
       }
 
       .feed-text strong {
-        color: var(--monitor-green);
+        color: #fff;
+        text-shadow: 0 0 5px rgba(255,255,255,0.2);
       }
 
-      .cam-controls {
+      /* FNAF 4 Bedroom Navigation Buttons Grid */
+      .bedroom-controls {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
         margin-top: 15px;
       }
 
-      .cam-btn {
-        background: #112214;
-        border: 2px solid #1d5222;
-        color: #6bbe72;
+      .room-btn {
+        background: #1c120e;
+        border: 2px solid #3a2519;
+        color: #a89488;
+        font-family: 'Courier Prime', monospace;
         font-weight: bold;
-        font-size: 0.8rem;
-        padding: 8px 4px;
+        font-size: 0.85rem;
+        padding: 10px;
         cursor: pointer;
         border-radius: 4px;
         transition: all 0.2s ease;
+        text-transform: uppercase;
       }
 
-      .cam-btn:hover {
-        background: #19381e;
+      .room-btn:hover {
+        background: #2b1c16;
+        color: var(--flashlight-glow);
+        border-color: #5c3c2a;
+      }
+
+      .room-btn.active {
+        background: var(--nightmare-red);
         color: #fff;
-      }
-
-      .cam-btn.active {
-        background: var(--monitor-green);
-        color: #000;
-        border-color: #fff;
-        box-shadow: 0 0 10px rgba(32,194,14,0.6);
+        border-color: #9c1010;
+        box-shadow: 0 0 12px rgba(156,16,16,0.5);
       }
 
       .system-link-box {
@@ -231,70 +228,74 @@
         display: inline-block;
         padding: 12px 30px;
         background: transparent;
-        color: var(--fnaf-red);
+        color: var(--nightmare-red);
         text-decoration: none;
-        border: 2px solid var(--fnaf-red);
+        border: 2px solid var(--nightmare-red);
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
+        letter-spacing: 1px;
         transition: all 0.2s ease;
       }
 
       .terminal-btn:hover {
-        background: var(--fnaf-red);
+        background: var(--nightmare-red);
         color: #fff;
-        box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+        box-shadow: 0 0 15px rgba(92, 6, 6, 0.8);
       }
     </style>
   </head>
   <body>
 
-    <!-- Fullscreen Jumpscare Element -->
+    <!-- Fullscreen Chica Jumpscare -->
     <div class="jumpscare-overlay" id="jumpscare">
       <img src="https://makeagif.com" alt="Chica Jumpscare">
     </div>
 
     <!-- Main Terminal Frame -->
     <div class="terminal">
-      <div class="live-tag">● LIVE_FEED</div>
+      <div class="clock-tag">12:00 AM</div>
       
-      <h1>SYSTEM MONITOR</h1>
-      <div class="status-text">Facility Log: Andrea Criollo // Freshman Entry Pack</div>
+      <h1>FIVE NIGHTS AT ANDREA'S</h1>
+      <div class="status-text">Survival Log // Night 1: The Bedroom Check</div>
 
-      <!-- FNAF 4 Theme Loop Audio Player -->
-      <div class="audio-module">
+      <!-- FNAF 4 Background Theme Music -->
+      <div class="audio-container">
         <audio id="fnafAudio" loop controls>
           <source src="https://github.io" type="audio/mpeg">
-          <!-- Fallback path if the main server is busy -->
-          <source src="https://soundboard.com" type="audio/mpeg">
-          Your browser does not support the audio player element.
+          Your browser does not support the audio element.
         </audio>
       </div>
 
-      <h2>[ FRESHMAN SECURITY MONITORS ]</h2>
+      <h2>[ Check the Points of Entry ]</h2>
       
-      <div class="camera-monitor">
-        <div class="feed-screen">
-          <div class="active-cam-indicator" id="camName">CAM 1A - STAGE MAIN</div>
-          <p class="feed-text" id="camContent">
-            I recently finished middle school and stepped up into <strong>Energy Tech High School</strong> as a 9th grader. My high school is cool because it lets us partner with real tech firms, meaning we start prepping for massive engineering fields right after graduation!
-          </p>
-        </div>
+      <!-- Room Inspection Viewport -->
+      <div class="room-viewport">
+        <div class="active-location" id="roomLabel">Location: Left Door</div>
+        <p class="feed-text" id="roomText">
+          I recently finished middle school and stepped up into <strong>Energy Tech High School</strong> as a 9th grader. My high school is cool because it lets us partner with real tech firms, meaning we start prepping for massive engineering fields right after graduation!
+        </p>
+      </div>
 
-        <div class="cam-controls">
-          <button class="cam-btn active" onclick="switchCam('1A', 'STAGE MAIN', 'I recently finished middle school and stepped up into <strong>Energy Tech High School</strong> as a 9th grader. My high school is cool because it lets us partner with real tech firms, meaning we start prepping for massive engineering fields right after graduation!')">CAM 1A</button>
-          <button class="cam-btn" onclick="switchCam('1B', 'DINING AREA', 'For my interests, I love going outside to explore and dealing with <strong>geometry</strong>. I first got hooked on geometric lines during middle school math class when we had to learn how shapes fit together perfectly.')">CAM 1B</button>
-          <button class="cam-btn" onclick="switchCam('2A', 'WEST HALLWAY', 'A crazy link between classes: the (X, Y) coordinate grids we used to graph basic shapes are the exact same way <strong>video game programming engines</strong> place animatronics and players inside a map level!')">CAM 2A</button>
-          <button class="cam-btn" onclick="switchCam('3', 'BACKSTAGE ROOM', 'My main goal this year is to build a top-tier problem-solving mindset and master computer science. I want to shift past easy block coding and learn how to write actual professional software scripts from scratch!')">CAM 3</button>
-        </div>
+      <!-- FNAF 4 Control Buttons Layout -->
+      <div class="bedroom-controls">
+        <button class="room-btn active" onclick="checkRoom('Left Door', 'I recently finished middle school and stepped up into <strong>Energy Tech High School</strong> as a 9th grader. My high school is cool because it lets us partner with real tech firms, meaning we start prepping for massive engineering fields right after graduation!')">Flash Left Door</button>
+        <button class="room-btn" onclick="checkRoom('Right Door', 'For my interests, I love going outside to explore and dealing with <strong>geometry</strong>. I first got hooked on geometric lines during middle school math class when we had to learn how shapes fit together perfectly.')">Flash Right Door</button>
+        <button class="room-btn" onclick="checkRoom('The Closet', 'A crazy link between classes: the (X, Y) coordinate grids we used to graph basic shapes are the exact same way <strong>video game programming engines</strong> place animatronics and players inside a map level!')">Flash Closet</button>
+        <button class="room-btn" onclick="checkRoom('The Bed', 'My main goal this year is to build a top-tier problem-solving mindset and master computer science. I want to shift past easy block coding and learn how to write actual professional software scripts from scratch!')">Check Bed Behind You</button>
       </div>
 
       <div class="system-link-box">
-        <a href="https://github.com" target="_blank" class="terminal-btn">Access Git Repository</a>
+        <a href="https://github.com" target="_blank" class="terminal-btn">Open Git Inventory</a>
       </div>
 
     </div>
 
     <script>
-      // Automatically run the jumpscare as soon as the window finishes loading
+      // Automated opening jumpscare sequence
       window.onload = function() {
+        const overlay = document.getElementById('jumpscare');
+        const audio = document.getElementById('fnafAudio');
+        
+
+        
