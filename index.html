@@ -3,13 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea Criollo | Personal Site</title>
-    <!-- Clean, highly readable rounded font -->
+    <title>Andrea Criollo | Bikini Bottom</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
-        --ocean-bg: linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%);
-        --paper-white: #fafafa;
+        --paper-white: rgba(250, 250, 250, 0.94);
         --ink-dark: #2c3e50;
         --accent-blue: #2980b9;
       }
@@ -22,7 +20,10 @@
         font-family: 'Fredoka', sans-serif; 
         margin: 0; 
         padding: 0; 
-        background: var(--ocean-bg);
+        background: 
+          linear-gradient(to top, rgba(230, 195, 122, 0.9) 0%, rgba(230, 195, 122, 0.9) 15%, transparent 15.5%),
+          linear-gradient(to bottom, #106494 0%, #208cb4 40%, #3ca0c4 75%, #a4dcbc 100%);
+        background-attachment: fixed;
         color: var(--ink-dark);
         min-height: 100vh;
         display: flex;
@@ -30,6 +31,100 @@
         align-items: center;
         overflow-x: hidden;
         position: relative;
+      }
+
+      /* Fishing Hooks hanging from the top */
+      .hooks-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .hook-line {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        background: rgba(255, 255, 255, 0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Custom CSS Hooks */
+      .hook-line::after {
+        content: '🪝';
+        font-size: 1.8rem;
+        position: absolute;
+        bottom: -20px;
+        filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+      }
+
+      .hook-1 { left: 15%; height: 70px; }
+      .hook-2 { left: 45%; height: 110px; }
+      .hook-3 { left: 80%; height: 50px; }
+
+      /* Seahorse Entrance Animation Zone */
+      .seahorse-track {
+        position: absolute;
+        top: 25%;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .seahorse {
+        position: absolute;
+        font-size: 2.2rem;
+        left: -60px;
+        opacity: 0;
+        animation: swimRight 7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      /* Staggering the seahorses */
+      .sh-1 { top: 10px; animation-delay: 0.2s; }
+      .sh-2 { top: 70px; animation-delay: 0.6s; }
+      .sh-3 { top: 130px; animation-delay: 0.4s; }
+
+      @keyframes swimRight {
+        0% { left: -60px; opacity: 0; transform: scaleX(-1) translateY(0); }
+        10% { opacity: 0.9; }
+        90% { opacity: 0.9; }
+        100% { left: 105vw; opacity: 0; transform: scaleX(-1) translateY(-20px); }
+      }
+
+      /* Underwater Plant Silhouettes */
+      body::before {
+        content: '';
+        position: absolute;
+        bottom: 14%;
+        left: 5%;
+        width: 120px;
+        height: 160px;
+        background: radial-gradient(circle at bottom, #1b4d3e 60%, transparent 65%);
+        clip-path: polygon(30% 100%, 10% 60%, 40% 30%, 20% 0%, 60% 20%, 50% 50%, 80% 70%, 70% 100%);
+        opacity: 0.4;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      body::after {
+        content: '';
+        position: absolute;
+        bottom: 14%;
+        right: 8%;
+        width: 90px;
+        height: 200px;
+        background: radial-gradient(circle at bottom, #2e6f40 60%, transparent 65%);
+        clip-path: polygon(40% 100%, 20% 70%, 50% 40%, 30% 10%, 70% 0%, 60% 40%, 80% 60%, 60% 100%);
+        opacity: 0.35;
+        z-index: 1;
+        pointer-events: none;
       }
 
       /* Slow Floating Air Bubbles */
@@ -44,20 +139,20 @@
       .bubble {
         position: absolute;
         bottom: -60px;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 70%);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 70%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
         border-radius: 50%;
         animation: floatUp 9s ease-in infinite;
       }
 
       @keyframes floatUp {
         0% { transform: translateY(0) scale(0.8); opacity: 0; }
-        20% { opacity: 0.6; }
-        80% { opacity: 0.6; }
-        100% { transform: translateY(-115vh) scale(1.2); opacity: 0; }
+        20% { opacity: 0.7; }
+        80% { opacity: 0.7; }
+        100% { transform: translateY(-115vh) scale(1.3); opacity: 0; }
       }
 
-      /* Main Scrapbook Workspace */
+      /* Scrapbook Workspace */
       .workspace {
         width: 100%;
         max-width: 580px;
@@ -69,14 +164,13 @@
         margin: 40px 20px;
       }
 
-      /* Header Styled Like a Floating Sign */
       .main-title {
         background: var(--paper-white);
         padding: 25px;
         border-radius: 20px;
         text-align: center;
         box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        border-bottom: 5px solid #e2e8f0;
+        border-bottom: 5px solid #cbd5e1;
       }
 
       h1 { 
@@ -91,7 +185,7 @@
         margin-top: 5px;
       }
 
-      /* SpongeBob & Speech Bubble Section */
+      /* SpongeBob Section */
       .character-zone {
         display: flex;
         flex-direction: column;
@@ -153,13 +247,12 @@
       .paper-card {
         background: var(--paper-white);
         padding: 25px;
-        border-radius: 4px; /* Slight edge like a piece of paper */
+        border-radius: 4px; 
         box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         border-left: 6px solid var(--accent-blue);
       }
 
-      /* Slightly rotate cards to make them look hand-placed */
       .paper-card:nth-child(odd) { transform: rotate(-1deg); }
       .paper-card:nth-child(even) { transform: rotate(1deg); }
 
@@ -179,12 +272,11 @@
 
       p { 
         line-height: 1.6; 
-        color: #555; 
+        color: #444; 
         font-size: 0.95rem;
         margin: 0;
       }
 
-      /* Clean Button */
       .button-zone {
         text-align: center;
         margin-top: 10px;
@@ -212,6 +304,20 @@
   </head>
   <body>
 
+    <!-- Hooks at the top -->
+    <div class="hooks-container">
+      <div class="hook-line hook-1"></div>
+      <div class="hook-line hook-2"></div>
+      <div class="hook-line hook-3"></div>
+    </div>
+
+    <!-- Animated Seahorses Crossing -->
+    <div class="seahorse-track">
+      <div class="seahorse sh-1">🫏</div> <!-- Using stylized water creature icons -->
+      <div class="seahorse sh-2">🫏</div>
+      <div class="seahorse sh-3">🫏</div>
+    </div>
+
     <!-- Air Bubbles Background -->
     <div class="bubbles" id="bubbleMachine"></div>
 
@@ -227,7 +333,6 @@
         <div class="bubble-chat">
           "Hey there! Welcome to my site. Here is a quick look into what I am learning and working on!"
         </div>
-        <!-- Public Domain Remixed Silly Sponge Graphic -->
         <img class="sponge-img" src="https://openclipart.org" alt="Sponge Character">
       </div>
 
@@ -243,33 +348,5 @@
 
       <div class="paper-card">
         <h2>My Goals</h2>
-        <p>My main goal right now is to build up a strong problem-solving mindset and learn as much as I can about computer science. I want to build a solid foundation so I can confidently create my own software and apps in the future.</p>
-      </div>
-
-      <div class="button-zone">
-        <a href="https://github.com" target="_blank" class="github-btn">Check Out My GitHub</a>
-      </div>
-
-    </div>
-
-    <script>
-      const bg = document.getElementById('bubbleMachine');
-      const totalBubbles = 15;
-      for (let i = 0; i < totalBubbles; i++) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        const dimension = Math.floor(Math.random() * 35) + 12;
-        bubble.style.width = `${dimension}px`;
-        bubble.style.height = `${dimension}px`;
-        bubble.style.left = `${Math.random() * 100}%`;
-        bubble.style.animationDelay = `${Math.random() * 5}s`;
-        bubble.style.animationDuration = `${Math.random() * 4 + 7}s`;
-        bg.appendChild(bubble);
-      }
-    </script>
-
-  </body>
-</html>
-
 
 
