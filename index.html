@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea Criollo | Bikini Bottom Edition</title>
-    <!-- Fun, rounded font to match the cartoon theme -->
+    <title>Andrea Criollo | Bikini Bottom Space</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
         --ocean-bg: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
-        --bubble-color: rgba(255, 255, 255, 0.3);
-        --card-bg: rgba(255, 255, 255, 0.9);
+        --card-bg: rgba(255, 255, 255, 0.92);
         --text-dark: #0f4c81;
-        --spongebob-yellow: #fdd835;
       }
 
       * {
@@ -33,7 +30,7 @@
         position: relative;
       }
 
-      /* Floating Water Bubbles Background */
+      /* Dynamic Air Bubbles */
       .water-bubbles {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -58,11 +55,11 @@
         100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
       }
 
-      /* Main Content Card */
+      /* Main Card */
       .container {
         width: 100%;
-        max-width: 600px;
-        padding: 35px;
+        max-width: 620px;
+        padding: 40px;
         background: var(--card-bg);
         border-radius: 30px;
         box-shadow: 0 15px 35px rgba(15, 76, 129, 0.3);
@@ -73,9 +70,8 @@
       }
 
       h1 { 
-        font-size: 2.6rem;
-        margin-top: 0;
-        margin-bottom: 5px;
+        font-size: 2.8rem;
+        margin: 0;
         color: #0c385e;
         text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.1);
       }
@@ -89,35 +85,32 @@
 
       h2 { 
         color: #1964a0; 
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-top: 25px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        margin-bottom: 12px;
       }
 
       p { 
         line-height: 1.6; 
         color: #2c5270; 
-        font-size: 1rem;
+        font-size: 0.98rem;
         margin: 0;
       }
 
       .info-box {
         background: #f0f8ff;
-        padding: 16px 20px;
+        padding: 20px;
         border-radius: 20px;
         border: 2px dashed #b0d4f1;
+        text-align: left;
       }
 
-      /* SpongeBob Presentation Layout */
+      /* Layout for Character and Bubble */
       .spongebob-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
       }
 
       .speech-bubble {
@@ -131,10 +124,10 @@
         font-size: 1.05rem;
         font-weight: 600;
         box-shadow: 0 6px 0px var(--text-dark);
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        text-align: center;
       }
 
-      /* Arrow pointing down toward SpongeBob */
       .speech-bubble::after {
         content: '';
         position: absolute;
@@ -162,20 +155,21 @@
         z-index: 1;
       }
 
+      /* Public Domain Character Pic */
       .spongebob-pic {
-        width: 130px;
+        width: 140px;
         height: auto;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .spongebob-pic:hover {
-        transform: scale(1.1) rotate(5deg);
+        transform: scale(1.15) rotate(8deg);
       }
 
-      /* Fun Surf Button */
+      /* Button Layout */
       .github-btn {
         display: inline-block;
-        margin-top: 30px;
+        margin-top: 35px;
         padding: 14px 40px;
         background: #ff6b6b;
         color: #fff;
@@ -192,72 +186,60 @@
         transform: translateY(2px);
         box-shadow: 0 4px 0px #c94a4a;
       }
-
-      .github-btn:active {
-        transform: translateY(6px);
-        box-shadow: 0 0px 0px #c94a4a;
-      }
     </style>
   </head>
   <body>
 
-    <!-- Water Bubbles Background -->
     <div class="water-bubbles" id="bubbleMachine"></div>
 
-    <!-- Main Board -->
     <div class="container">
       <h1>Andrea Criollo</h1>
-      <div class="subtitle">Welcome to my space!</div>
+      <div class="subtitle">Tech Explorer Space</div>
       
-      <!-- SpongeBob Feature Section -->
       <div class="spongebob-layout">
         <div class="speech-bubble">
-          "I'm ready! Andrea is an awesome 9th grader at Energy Tech High School. She's expanding her mindset with geometry and computer science!"
+          "Wow! Andrea is leveling up her coding skills in the 9th grade! Scroll down to check out some awesome facts about her journey!"
         </div>
-        <!-- Static high-quality png of SpongeBob pointing up -->
-        <img class="spongebob-pic" src="https://openclipart.org" alt="SpongeBob Pointing Up">
+        <!-- Public Domain Remixed Silly Sponge Artwork (CC0 License) -->
+        <img class="spongebob-pic" src="https://openclipart.org" alt="Public Domain Sponge Character">
       </div>
 
       <h2>⚓ About Me</h2>
       <div class="info-box">
-        <p>I'm in 9th grade at Energy Tech High School.</p>
+        <p>I am a 9th grader at <strong>Energy Tech High School</strong>. A cool fact about my school is that we partner directly with engineering leaders and college programs. This allows me to see exactly how professional engineering and real-world technology operates while I finish my high school degree!</p>
       </div>
 
       <h2>🪼 My Interests</h2>
       <div class="info-box">
-        <p>I enjoy going outside exploring things and geometry.</p>
+        <p>I love spending time outside exploring new environments and diving into <strong>geometry</strong>. An interesting connection here is that geometry isn't just shapes on paper—it's actually the entire backbone of game design, 3D printing, and building cool animations in computer science!</p>
       </div>
 
       <h2>🚀 My Goals</h2>
       <div class="info-box">
-        <p>I want to build my mindset, grow, and learn more about computer science.</p>
+        <p>My goal for this course is to aggressively build an engineering mindset, grow my analytical abilities, and master computer science. I want to build a deep logical foundation so I can design efficient projects and write scalable code that solves actual everyday challenges.</p>
       </div>
 
-      <a href="https://github.com" target="_blank" class="github-btn">My GitHub Projects</a>
+      <a href="https://github.com" target="_blank" class="github-btn">Explore My GitHub</a>
     </div>
 
-    <!-- Script to keep creating underwater bubble effects -->
     <script>
       const bg = document.getElementById('bubbleMachine');
       const totalBubbles = 20;
-
       for (let i = 0; i < totalBubbles; i++) {
         const bubble = document.createElement('div');
         bubble.classList.add('water-bubble');
-        
         const dimension = Math.floor(Math.random() * 40) + 10;
         bubble.style.width = `${dimension}px`;
         bubble.style.height = `${dimension}px`;
         bubble.style.left = `${Math.random() * 100}%`;
-        
         bubble.style.animationDelay = `${Math.random() * 6}s`;
         bubble.style.animationDuration = `${Math.random() * 4 + 6}s`;
-        
         bg.appendChild(bubble);
       }
     </script>
 
   </body>
 </html>
+
 
 
