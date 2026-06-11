@@ -3,30 +3,169 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Andrea Criollo's Website</title>
+    <title>Andrea Criollo | Music & Code</title>
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-      body { font-family: Arial, sans-serif; max-width: 800px;
-             margin: 0 auto; padding: 20px; background: #f5f5f5; }
-      h1   { color: #1F4E79; }
-      h2   { color: #2E75B6; border-bottom: 2px solid #2E75B6; }
-      p    { line-height: 1.6; }
+      :root {
+        --bg-gradient: linear-gradient(135deg, #0b0c10 0%, #1f2833 50%, #111827 100%);
+        --card-bg: rgba(255, 255, 255, 0.08);
+        --text-main: #e6f1fc;
+        --accent-color: #61dafb;
+        --rnb-purple: #c5a8ff;
+      }
+
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background: var(--bg-gradient);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 650px;
+        padding: 40px;
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin: 20px;
+        text-align: center;
+      }
+
+      h1 { 
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #61dafb, var(--rnb-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+      }
+
+      h2 { 
+        color: var(--rnb-purple); 
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      p { 
+        line-height: 1.8; 
+        color: #a0aec0; 
+        font-size: 0.95rem;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* GitHub Button */
+      .github-link {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 30px;
+        background: linear-gradient(90deg, #61dafb, var(--rnb-purple));
+        color: #000;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .github-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(197, 168, 255, 0.4);
+      }
+
+      /* Audio Visualizer Effect */
+      .visualizer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 5px;
+        height: 30px;
+        margin-top: 25px;
+      }
+
+      .bar {
+        width: 6px;
+        height: 5px;
+        background: var(--rnb-purple);
+        border-radius: 3px;
+        animation: bounce 1s infinite alternate;
+      }
+
+      .bar:nth-child(1) { animation-delay: 0.2s; }
+      .bar:nth-child(2) { animation-delay: 0.4s; }
+      .bar:nth-child(3) { animation-delay: 0.6s; }
+      .bar:nth-child(4) { animation-delay: 0.8s; }
+      .bar:nth-child(5) { animation-delay: 0.5s; }
+
+      @keyframes bounce {
+        to { height: 25px; }
+      }
+
+      audio {
+        margin-top: 15px;
+        opacity: 0.8;
+      }
     </style>
   </head>
   <body>
-    <h1>Hi, I'm Andrea Criollo</h1>
- 
-    <h2>About Me</h2>
-    <p>I'm in 9th grade at energy tech high school</p>
- 
-    <h2>My Interests</h2>
-    <p>I enjoy: going outside exploring things and geometry</p>
- 
-    <h2>My Goals for This Course</h2>
-    <p>i want to build my mindset and and grow and learn more about computer science</p>
- 
-    <h2>My GitHub</h2>
-    <p>Check out my projects: 
-      <a href="https://github.com/[your-username]">andreac198</a>
-    </p>
+
+    <div class="container">
+      <h1>Hi, I'm Andrea Criollo</h1>
+      
+      <!-- Audio Player: Autoplays and Loops -->
+      <audio autoplay loop controls>
+        <!-- Replace the URL below with the direct link/URL to your favorite Lo-Fi/R&B MP3 file -->
+        <source src="https://mixkit.co" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <!-- Music visualizer animation -->
+      <div class="visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <h2>About Me</h2>
+      <div class="card">
+        <p>I'm in 9th grade at Energy Tech High School.</p>
+      </div>
+
+      <h2>My Interests</h2>
+      <div class="card">
+        <p>I enjoy going outside exploring things and geometry.</p>
+      </div>
+
+      <h2>My Goals</h2>
+      <div class="card">
+        <p>I want to build my mindset, grow, and learn more about computer science.</p>
+      </div>
+
+      <h2>My GitHub</h2>
+      <a href="https://github.com" target="_blank" class="github-link">Check out my projects</a>
+    </div>
+
   </body>
 </html>
