@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrea Criollo | Bikini Bottom Space</title>
+    <title>Andrea Criollo | Personal Site</title>
+    <!-- Clean, highly readable rounded font -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
       :root {
-        --ocean-bg: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
-        --card-bg: rgba(255, 255, 255, 0.92);
-        --text-dark: #0f4c81;
+        --ocean-bg: linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%);
+        --paper-white: #fafafa;
+        --ink-dark: #2c3e50;
+        --accent-blue: #2980b9;
       }
 
       * {
@@ -21,7 +23,7 @@
         margin: 0; 
         padding: 0; 
         background: var(--ocean-bg);
-        color: var(--text-dark);
+        color: var(--ink-dark);
         min-height: 100vh;
         display: flex;
         justify-content: center;
@@ -30,8 +32,8 @@
         position: relative;
       }
 
-      /* Dynamic Air Bubbles */
-      .water-bubbles {
+      /* Slow Floating Air Bubbles */
+      .bubbles {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
         overflow: hidden;
@@ -39,115 +41,97 @@
         pointer-events: none;
       }
 
-      .water-bubble {
+      .bubble {
         position: absolute;
-        bottom: -50px;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 70%);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        bottom: -60px;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 70%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 50%;
-        animation: floatUp 8s linear infinite;
+        animation: floatUp 9s ease-in infinite;
       }
 
       @keyframes floatUp {
-        0% { transform: translateY(0) scale(1); opacity: 0; }
-        10% { opacity: 0.8; }
-        90% { opacity: 0.8; }
-        100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+        0% { transform: translateY(0) scale(0.8); opacity: 0; }
+        20% { opacity: 0.6; }
+        80% { opacity: 0.6; }
+        100% { transform: translateY(-115vh) scale(1.2); opacity: 0; }
       }
 
-      /* Main Card */
-      .container {
+      /* Main Scrapbook Workspace */
+      .workspace {
         width: 100%;
-        max-width: 620px;
-        padding: 40px;
-        background: var(--card-bg);
-        border-radius: 30px;
-        box-shadow: 0 15px 35px rgba(15, 76, 129, 0.3);
-        margin: 40px 20px;
-        text-align: center;
+        max-width: 580px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
         z-index: 2;
-        border: 4px solid #fff;
+        margin: 40px 20px;
+      }
+
+      /* Header Styled Like a Floating Sign */
+      .main-title {
+        background: var(--paper-white);
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        border-bottom: 5px solid #e2e8f0;
       }
 
       h1 { 
-        font-size: 2.8rem;
+        font-size: 2.4rem;
         margin: 0;
-        color: #0c385e;
-        text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.1);
+        color: var(--accent-blue);
       }
 
       .subtitle {
-        font-size: 1.1rem;
-        color: #1d72b8;
-        margin-bottom: 30px;
-        font-weight: 600;
+        font-size: 1rem;
+        color: #7f8c8d;
+        margin-top: 5px;
       }
 
-      h2 { 
-        color: #1964a0; 
-        font-size: 1.3rem;
-        margin-top: 25px;
-        margin-bottom: 12px;
-      }
-
-      p { 
-        line-height: 1.6; 
-        color: #2c5270; 
-        font-size: 0.98rem;
-        margin: 0;
-      }
-
-      .info-box {
-        background: #f0f8ff;
-        padding: 20px;
-        border-radius: 20px;
-        border: 2px dashed #b0d4f1;
-        text-align: left;
-      }
-
-      /* Layout for Character and Bubble */
-      .spongebob-layout {
+      /* SpongeBob & Speech Bubble Section */
+      .character-zone {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 35px;
+        gap: 15px;
       }
 
-      .speech-bubble {
+      .bubble-chat {
         position: relative;
         background: #fff;
-        color: #333;
-        border: 3px solid var(--text-dark);
-        border-radius: 20px;
+        border: 2px solid var(--ink-dark);
+        border-radius: 16px;
         padding: 15px 20px;
         max-width: 90%;
-        font-size: 1.05rem;
-        font-weight: 600;
-        box-shadow: 0 6px 0px var(--text-dark);
-        margin-bottom: 25px;
+        font-size: 1rem;
+        font-weight: 500;
         text-align: center;
+        box-shadow: 4px 4px 0px var(--ink-dark);
       }
 
-      .speech-bubble::after {
+      .bubble-chat::after {
         content: '';
         position: absolute;
-        bottom: -15px;
+        bottom: -12px;
         left: 50%;
         transform: translateX(-50%);
-        border-width: 15px 15px 0;
+        border-width: 12px 12px 0;
         border-style: solid;
-        border-color: var(--text-dark) transparent;
+        border-color: var(--ink-dark) transparent;
         display: block;
         width: 0;
       }
 
-      .speech-bubble::before {
+      .bubble-chat::before {
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -9px;
         left: 50%;
         transform: translateX(-50%);
-        border-width: 12px 12px 0;
+        border-width: 10px 10px 0;
         border-style: solid;
         border-color: #fff transparent;
         display: block;
@@ -155,85 +139,131 @@
         z-index: 1;
       }
 
-      /* Public Domain Character Pic */
-      .spongebob-pic {
-        width: 140px;
+      .sponge-img {
+        width: 120px;
         height: auto;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.3s ease;
       }
 
-      .spongebob-pic:hover {
-        transform: scale(1.15) rotate(8deg);
+      .sponge-img:hover {
+        transform: scale(1.1) rotate(-5deg);
       }
 
-      /* Button Layout */
+      /* Paper Cutout Cards */
+      .paper-card {
+        background: var(--paper-white);
+        padding: 25px;
+        border-radius: 4px; /* Slight edge like a piece of paper */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-left: 6px solid var(--accent-blue);
+      }
+
+      /* Slightly rotate cards to make them look hand-placed */
+      .paper-card:nth-child(odd) { transform: rotate(-1deg); }
+      .paper-card:nth-child(even) { transform: rotate(1deg); }
+
+      .paper-card:hover {
+        transform: translateY(-5px) rotate(0deg);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      }
+
+      h2 { 
+        color: var(--accent-blue); 
+        font-size: 1.2rem;
+        margin-top: 0;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      p { 
+        line-height: 1.6; 
+        color: #555; 
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      /* Clean Button */
+      .button-zone {
+        text-align: center;
+        margin-top: 10px;
+      }
+
       .github-btn {
         display: inline-block;
-        margin-top: 35px;
-        padding: 14px 40px;
-        background: #ff6b6b;
+        padding: 14px 35px;
+        background: #e74c3c;
         color: #fff;
         text-decoration: none;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1.1rem;
-        box-shadow: 0 6px 0px #c94a4a;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
         transition: all 0.2s ease;
-        border: 2px solid #fff;
       }
 
       .github-btn:hover {
-        transform: translateY(2px);
-        box-shadow: 0 4px 0px #c94a4a;
+        background: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
       }
     </style>
   </head>
   <body>
 
-    <div class="water-bubbles" id="bubbleMachine"></div>
+    <!-- Air Bubbles Background -->
+    <div class="bubbles" id="bubbleMachine"></div>
 
-    <div class="container">
-      <h1>Andrea Criollo</h1>
-      <div class="subtitle">Tech Explorer Space</div>
+    <!-- Scrapbook Layout -->
+    <div class="workspace">
       
-      <div class="spongebob-layout">
-        <div class="speech-bubble">
-          "Wow! Andrea is leveling up her coding skills in the 9th grade! Scroll down to check out some awesome facts about her journey!"
+      <div class="main-title">
+        <h1>Andrea Criollo</h1>
+        <div class="subtitle">9th Grade Student & Aspiring Developer</div>
+      </div>
+      
+      <div class="character-zone">
+        <div class="bubble-chat">
+          "Hey there! Welcome to my site. Here is a quick look into what I am learning and working on!"
         </div>
-        <!-- Public Domain Remixed Silly Sponge Artwork (CC0 License) -->
-        <img class="spongebob-pic" src="https://openclipart.org" alt="Public Domain Sponge Character">
+        <!-- Public Domain Remixed Silly Sponge Graphic -->
+        <img class="sponge-img" src="https://openclipart.org" alt="Sponge Character">
       </div>
 
-      <h2>⚓ About Me</h2>
-      <div class="info-box">
-        <p>I am a 9th grader at <strong>Energy Tech High School</strong>. A cool fact about my school is that we partner directly with engineering leaders and college programs. This allows me to see exactly how professional engineering and real-world technology operates while I finish my high school degree!</p>
+      <div class="paper-card">
+        <h2>About Me</h2>
+        <p>I am a 9th grader at <strong>Energy Tech High School</strong>. One of the best things about my school is that we partner with industry engineering mentors, which lets us get a hands-on look at real tech careers while we complete our classes.</p>
       </div>
 
-      <h2>🪼 My Interests</h2>
-      <div class="info-box">
-        <p>I love spending time outside exploring new environments and diving into <strong>geometry</strong>. An interesting connection here is that geometry isn't just shapes on paper—it's actually the entire backbone of game design, 3D printing, and building cool animations in computer science!</p>
+      <div class="paper-card">
+        <h2>My Interests</h2>
+        <p>Outside of classes, I really enjoy going outdoors to explore new places and studying <strong>geometry</strong>. It is cool to see how geometry isn't just about math problems on paper—it is actually the math used behind the scenes to build 3D video game worlds.</p>
       </div>
 
-      <h2>🚀 My Goals</h2>
-      <div class="info-box">
-        <p>My goal for this course is to aggressively build an engineering mindset, grow my analytical abilities, and master computer science. I want to build a deep logical foundation so I can design efficient projects and write scalable code that solves actual everyday challenges.</p>
+      <div class="paper-card">
+        <h2>My Goals</h2>
+        <p>My main goal right now is to build up a strong problem-solving mindset and learn as much as I can about computer science. I want to build a solid foundation so I can confidently create my own software and apps in the future.</p>
       </div>
 
-      <a href="https://github.com" target="_blank" class="github-btn">Explore My GitHub</a>
+      <div class="button-zone">
+        <a href="https://github.com" target="_blank" class="github-btn">Check Out My GitHub</a>
+      </div>
+
     </div>
 
     <script>
       const bg = document.getElementById('bubbleMachine');
-      const totalBubbles = 20;
+      const totalBubbles = 15;
       for (let i = 0; i < totalBubbles; i++) {
         const bubble = document.createElement('div');
-        bubble.classList.add('water-bubble');
-        const dimension = Math.floor(Math.random() * 40) + 10;
+        bubble.classList.add('bubble');
+        const dimension = Math.floor(Math.random() * 35) + 12;
         bubble.style.width = `${dimension}px`;
         bubble.style.height = `${dimension}px`;
         bubble.style.left = `${Math.random() * 100}%`;
-        bubble.style.animationDelay = `${Math.random() * 6}s`;
-        bubble.style.animationDuration = `${Math.random() * 4 + 6}s`;
+        bubble.style.animationDelay = `${Math.random() * 5}s`;
+        bubble.style.animationDuration = `${Math.random() * 4 + 7}s`;
         bg.appendChild(bubble);
       }
     </script>
