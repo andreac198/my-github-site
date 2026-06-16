@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iAndrea.com | Random Thoughts & Tech!</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Corrected Google Fonts implementation for Fredoka -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    
     <style>
       :root {
         --icarly-pink: #ff007f;
@@ -87,7 +91,7 @@
         position: relative;
       }
 
-      /* Decorative Video Badge Overlay */
+      /* Decorative Video Badge Overlay with pulsing animation */
       .video-window::before {
         content: '🔴 LIVE WEBCAST PLAYER';
         position: absolute;
@@ -100,6 +104,12 @@
         font-weight: 700;
         border-radius: 8px;
         border: 2px solid #000;
+        animation: badgePulse 2s infinite alternate;
+      }
+
+      @keyframes badgePulse {
+        0% { transform: scale(1); box-shadow: 0 0 0px rgba(255, 242, 0, 0); }
+        100% { transform: scale(1.05); box-shadow: 0 0 10px var(--icarly-yellow); }
       }
 
       .post-box {
@@ -159,26 +169,34 @@
         margin-bottom: 12px;
       }
 
-      /* Clickable Retro Web Badge Button */
+      /* Animated Retro Web Badge Buttons */
       .icarly-btn {
         display: block;
         text-align: center;
         background: var(--icarly-yellow);
         color: #000;
-        padding: 14px;
+        padding: 12px 14px;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 1rem;
         border: 3px solid #fff;
         box-shadow: 0 5px 0px #b3a000;
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
-        margin-top: 15px;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    box-shadow 0.2s ease, 
+                    background-color 0.2s ease;
+        margin-top: 12px;
       }
 
       .icarly-btn:hover {
+        transform: translateY(-3px) scale(1.03);
+        background-color: #fff;
+        box-shadow: 0 8px 15px rgba(0, 242, 254, 0.4);
+      }
+
+      .icarly-btn:active {
         transform: translateY(2px);
-        box-shadow: 0 3px 0px #b3a000;
+        box-shadow: 0 2px 0px #b3a000;
       }
     </style>
   </head>
@@ -217,8 +235,10 @@
 
         <div class="widget">
           <h3>Web Links!</h3>
-          <p>Take a look at the latest software repositories I am shipping over on GitHub:</p>
-          <a href="https://github.com" target="_blank" class="icarly-btn">SEE MY CODE!</a>
+          <p>Take a look at my engineering and coding tools:</p>
+          <!-- Updated Navigation Links -->
+          <a href="https://cad.onshape.com/documents?resourceType=resourceuserowner&nodeId=6984eef88fc33556820129c6" target="_blank" class="icarly-btn">📐 ONSHAPE CAD APP</a>
+          <a href="https://studio.code.org/home" target="_blank" class="icarly-btn">💻 CODE.ORG STUDIO</a>
         </div>
 
       </div>
@@ -227,6 +247,3 @@
 
   </body>
 </html>
-
-
-      
